@@ -32,9 +32,9 @@ public class User {
     private Interest interest1;
 
     //다대일 단방향
-    @ManyToOne()
-    @JoinColumn(name = "INTEREST_IDX")
-    private Interest interest2;
+//    @ManyToOne()
+//    @JoinColumn(name = "INTEREST_IDX")
+//    private Interest interest2;
 
     private String introduction;
     private String profileImgUrl;
@@ -50,7 +50,7 @@ public class User {
     private Date updatedAt;
 
     //Rating 일대다 양방향(유저에 대한 평가 리스트)
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user" )
     private List<Rating> ratings = new ArrayList<Rating>();
 
     //UserGroup 일대다 양방향
@@ -73,4 +73,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Application> applications = new ArrayList<Application>();
 
+
+    //유저가 가입한 스터디에서의 개인 출석율은 쿼리를 써야할 듯
 }
