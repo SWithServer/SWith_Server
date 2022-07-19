@@ -16,11 +16,11 @@ import javax.persistence.*;
 @Table(name = "ANNOUNCEMENT")
 public class Announcement extends BaseTimeEntity{
     @Id
-    @Column(name = "ANNOUNCEMENT_IDX")
+//    @Column(name = "ANNOUNCEMENT_IDX")
     private Long announcementIdx;
 
     @ManyToOne
-    @JoinColumn(name = "GROUP_INFO_IDX")
+    @JoinColumn//(name = "GROUP_INFO_IDX")
     private GroupInfo groupInfo;
 
     private String announcementContent;

@@ -19,11 +19,11 @@ import java.util.List;
 @Table(name = "SESSION")
 public class Session extends BaseTimeEntity {
     @Id
-    @Column(name = "SESSION_IDX")
+//    @Column(name = "SESSION_IDX")
     private Long sessionIdx;
 
     @ManyToOne
-    @JoinColumn(name = "GROUP_INFO_IDX")
+    @JoinColumn//(name = "GROUP_INFO_IDX")
     private GroupInfo groupInfo;
     private Integer sessionNum;
 

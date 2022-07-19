@@ -22,7 +22,7 @@ public class User extends BaseTimeEntity {
     //아래와 같이 설정하면 DB에 위임하는 방식(AUTO_INCREMENT)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_IDX")
+//    @Column(name = "USER_IDX")
     private Long userIdx;
 
 
@@ -31,12 +31,12 @@ public class User extends BaseTimeEntity {
 
     //다대일 단방향
     @ManyToOne()
-    @JoinColumn(name = "INTEREST_IDX1")
+    @JoinColumn//(name = "INTEREST_IDX1")
     private Interest interest1;
 
     //다대일 단방향
     @ManyToOne()
-    @JoinColumn(name = "INTEREST_IDX2")
+    @JoinColumn//(name = "INTEREST_IDX2")
     private Interest interest2;
 
     private String introduction;

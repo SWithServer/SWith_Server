@@ -18,12 +18,12 @@ import java.util.Date;
 public class Notification extends BaseTimeEntity {
     @Id
     @GeneratedValue
-    @Column(name = "NOTIFICATION_IDX")
+//    @Column(name = "NOTIFICATION_IDX")
     private Long notificationIdx;
 
     private String notificationContent;
 
     @ManyToOne
-    @JoinColumn(name = "USER_IDX")
+    @JoinColumn//(name = "USER_IDX")
     private User user;
 }

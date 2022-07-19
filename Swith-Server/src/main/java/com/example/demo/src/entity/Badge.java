@@ -17,11 +17,11 @@ import javax.persistence.*;
 public class Badge extends BaseTimeEntity {
 
     @Id
-    @Column(name = "BADGE_IDX")
+//    @Column(name = "BADGE_IDX")
     private Long badgeIdx;
 
     @ManyToOne
-    @JoinColumn(name = "USER_IDX")
+    @JoinColumn//(name = "USER_IDX")
     private User user;
 
     //Double로 저장하는게 좋을듯
@@ -29,6 +29,6 @@ public class Badge extends BaseTimeEntity {
 
     //Interest 다대일 단방향
     @ManyToOne
-    @JoinColumn(name = "INTEREST_IDX")
+    @JoinColumn//(name = "INTEREST_IDX")
     private Interest interest;
 }

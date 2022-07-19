@@ -24,7 +24,7 @@ public class GroupInfo extends BaseTimeEntity {
 
     // 관리자 ID
     @ManyToOne
-    @JoinColumn(name = "ADMIN_IDX")
+    @JoinColumn//(name = "ADMIN_IDX")
     private User user;
 
     private String groupImgUrl;
@@ -53,7 +53,7 @@ public class GroupInfo extends BaseTimeEntity {
 
     // 스터디 분류
     @ManyToOne
-    @JoinColumn(name = "INTEREST_IDX")
+    @JoinColumn//(name = "INTEREST_IDX")
     private Interest interest;
 
     // 스터디 주제

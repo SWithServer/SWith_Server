@@ -16,17 +16,17 @@ import javax.persistence.*;
 @Table(name = "ATTENDANCE")
 public class Attendance extends BaseTimeEntity {
     @Id
-    @Column(name = "ATTENDANCE_IDX")
+//    @Column(name = "ATTENDANCE_IDX")
     private Long attendanceIdx;
 
     //이건 양방향으로 할 필요가 없음, 다대일 단방향으로
     @ManyToOne
-    @JoinColumn(name = "USER_IDX")
+    @JoinColumn//(name = "USER_IDX")
     private User user;
 
     //Session 다대일 양방향
     @ManyToOne
-    @JoinColumn(name = "SESSION_IDX")
+    @JoinColumn//(name = "SESSION_IDX")
     private Session session;
 
     @Column(columnDefinition = "TINYINT")
