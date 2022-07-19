@@ -1,7 +1,7 @@
 //작성자: 이준표
 //Rating 엔티티 JPA 객체 매핑
 //createdAt 22.07.14
-//updaredAt 22.07.15
+//updatedAt 22.07.19
 package com.example.demo.src.entity;
 
 import lombok.*;
@@ -9,8 +9,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
+@Getter @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "RATING")
 public class Rating extends BaseTimeEntity {

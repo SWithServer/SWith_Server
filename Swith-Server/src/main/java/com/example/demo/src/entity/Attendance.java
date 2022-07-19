@@ -1,7 +1,7 @@
 //작성자: 이준표
 //Attendance 엔티티 JPA 객체 매핑
 //createdAt 22.07.15
-//updaredAt 22.07.15
+//updatedAt 22.07.19
 package com.example.demo.src.entity;
 
 import lombok.*;
@@ -9,11 +9,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
+@Getter @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "ATTENDANCE")
-public class Attendance {
+public class Attendance extends BaseTimeEntity {
     @Id
     @Column(name = "ATTENDANCE_IDX")
     private long attendanceIdx;
@@ -23,15 +25,12 @@ public class Attendance {
     @JoinColumn(name = "USER_IDX")
     private User user;
 
+    //Session 다대일 양방향
     @ManyToOne
     @JoinColumn(name = "SESSION_IDX")
     private Session session;
 
-    private Byte status;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    @Column(columnDefinition = "TINYINT")
+    @Builder.Default
+    private Integer status = 0;
 }

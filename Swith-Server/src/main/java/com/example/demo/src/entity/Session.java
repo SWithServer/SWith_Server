@@ -7,7 +7,9 @@ package com.example.demo.src.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter @Setter
 @Builder
@@ -41,5 +43,9 @@ public class Session extends BaseTimeEntity {
     private Integer status = 0;
 
     private String sessionContent;
-    //Attendance과 연결 (양방향)
+
+    //Attendance과 일대다 양방향
+    //Session의 출석부를 불러올 때 사용할듯
+    @OneToMany(mappedBy = "session")
+    private List<Attendance> attendances = new ArrayList<>();
 }
