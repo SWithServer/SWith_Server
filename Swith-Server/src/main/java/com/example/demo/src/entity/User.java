@@ -1,13 +1,11 @@
 //작성자: 이준표
 //User 엔티티 JPA 객체 매핑
 //createdAt 22.07.14
-//updaredAt 22.07.18
+//updatedAt 22.07.19
 package com.example.demo.src.entity;
 
 
 import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -58,7 +56,7 @@ public class User extends BaseTimeEntity {
     //UserGroup 일대다 양방향
     //가입한 그룹을 불러올 때 쓰일 것
     @OneToMany(mappedBy = "user")
-    private List<UserGroup> userGroups = new ArrayList<UserGroup>();
+    private List<Register> registers = new ArrayList<Register>();
 
     //Badge 일대다 양방향
     //프로필 조회시 사용할 것

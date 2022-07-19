@@ -1,7 +1,7 @@
 //작성자: 이준표
 //Group 엔티티 JPA 객체 매핑
 //createdAt 22.07.14
-//updaredAt 22.07.18
+//updatedAt 22.07.19
 package com.example.demo.src.entity;
 
 import lombok.*;
@@ -20,7 +20,7 @@ import java.util.List;
 public class GroupInfo extends BaseTimeEntity {
 
     @Id
-    private long groupInfoIdx;
+    private Long groupInfoIdx;
 
     // 관리자
     @ManyToOne
@@ -45,9 +45,11 @@ public class GroupInfo extends BaseTimeEntity {
     @Column(columnDefinition = "TINYINT")
     private Integer online;
 
-    // 활동 예정 지역코드 2개 (온라인값이 1이면 둘 다 NULL)
-    private long regionIdx1;
-    private long regionIdx2;
+    // 활동 예정 지역코드 2개 (온라인값이 1이면 둘 다 디폴트 값)
+    @Builder.Default
+    private Long regionIdx1 = 0000000000L;
+    @Builder.Default
+    private Long regionIdx2 = 0000000000L;
 
     // 스터디 분류
     @ManyToOne
@@ -62,6 +64,7 @@ public class GroupInfo extends BaseTimeEntity {
     private Integer memberLimit;
 
     // 지원 방식
+    @Column(columnDefinition = "TINYINT")
     private Integer applicationMethod;
 
     // 모집 기간 종료일
@@ -87,15 +90,23 @@ public class GroupInfo extends BaseTimeEntity {
 
     // 스터디 상태
     @Column(columnDefinition = "TINYINT")
-    private Integer status;
+    @Builder.Default
+    private Integer status = 0;
 
     //UserGroup 일대다 양방향
     //
     @OneToMany(mappedBy = "groupInfo")
-    private List<UserGroup> userGroups = new ArrayList<UserGroup>();
+    private List<Register> registers = new ArrayList<Register>();
 
     //Session 일대다 양방향
+    @OneToMany(mappedBy = "groupInfo")
+    private List<Session> sessions = new ArrayList<Session>();
+
     //Announcement와 일대다 양방향
+    @OneToMany(mappedBy = "groupInfo")
+    private List<Announcement> announcements = new ArrayList<>();
+
     //Application과 일대다 양방향
-    //Session과 일대다 양방향
+    @OneToMany(mappedBy = "groupInfo")
+    private List<Application> applications = new ArrayList<>();
 }

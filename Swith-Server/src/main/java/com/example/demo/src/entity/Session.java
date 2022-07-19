@@ -1,7 +1,7 @@
 //작성자: 이준표
 //Session 엔티티 JPA 객체 매핑
 //createdAt 22.07.15
-//updaredAt 22.07.15
+//updatedAt 22.07.19
 package com.example.demo.src.entity;
 
 import lombok.*;
@@ -9,31 +9,37 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
+@Getter @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "SESSION")
-public class Session {
+public class Session extends BaseTimeEntity {
     @Id
     @Column(name = "SESSION_IDX")
-    private long sessionIdx;
+    private Long sessionIdx;
 
     @ManyToOne
-    @JoinColumn(name = "GROUP_IDX")
+    @JoinColumn(name = "GROUP_INFO_IDX")
     private GroupInfo groupInfo;
+    private Integer sessionNum;
 
-    private long sessionNum;
+    //어떤 자료형으로 할지 고민이 필요
+    @Temporal(TemporalType.TIMESTAMP)
     private Date sessionStart;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date sessionEnd;
-    private Byte online;
+
+    @Column(columnDefinition = "TINYINT")
+    private Integer online;
+
     private String place;
-    private Byte status;
+
+    @Column(columnDefinition = "TINYINT")
+    @Builder.Default
+    private Integer status = 0;
+
     private String sessionContent;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
     //Attendance과 연결 (양방향)
 }
