@@ -1,7 +1,7 @@
 //작성자: 이준표
 //Interest 엔티티 JPA 객체 매핑
 //createdAt 22.07.14
-//updaredAt 22.07.18
+//updatedAt 22.07.19
 package com.example.demo.src.entity;
 
 
@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "INTEREST")
 public class Interest {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "INTEREST_IDX", columnDefinition = "TINYINT")
     private Integer interestIdx;

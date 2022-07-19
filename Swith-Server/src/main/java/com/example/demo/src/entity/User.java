@@ -41,7 +41,7 @@ public class User extends BaseTimeEntity {
 
     private String introduction;
     private String profileImgUrl;
-    private double averageStar;
+    private Double averageStar;
 
     //DB에서는 TINYINT 타입으로 저장
     @Column(columnDefinition = "TINYINT")

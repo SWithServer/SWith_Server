@@ -7,7 +7,6 @@ package com.example.demo.src.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Getter @Setter
 @Builder
@@ -18,7 +17,7 @@ import java.util.Date;
 public class Attendance extends BaseTimeEntity {
     @Id
     @Column(name = "ATTENDANCE_IDX")
-    private long attendanceIdx;
+    private Long attendanceIdx;
 
     //이건 양방향으로 할 필요가 없음, 다대일 단방향으로
     @ManyToOne

@@ -1,34 +1,34 @@
 //작성자: 이준표
 //Badge 엔티티 JPA 객체 매핑
 //createdAt 22.07.15
-//updaredAt 22.07.15
+//updatedAt 22.07.19
 package com.example.demo.src.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
-@Getter
-@Setter
+@Getter @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "BADGE")
-public class Badge {
+public class Badge extends BaseTimeEntity {
 
     @Id
     @Column(name = "BADGE_IDX")
-    private long badgeIdx;
+    private Long badgeIdx;
 
     @ManyToOne
     @JoinColumn(name = "USER_IDX")
     private User user;
 
-    private long attendanceRate;
+    //Double로 저장하는게 좋을듯
+    private Double attendanceRate;
 
+    //Interest 다대일 단방향
     @ManyToOne
     @JoinColumn(name = "INTEREST_IDX")
     private Interest interest;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
 }

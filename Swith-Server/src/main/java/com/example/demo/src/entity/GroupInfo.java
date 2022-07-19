@@ -22,7 +22,7 @@ public class GroupInfo extends BaseTimeEntity {
     @Id
     private Long groupInfoIdx;
 
-    // 관리자
+    // 관리자 ID
     @ManyToOne
     @JoinColumn(name = "ADMIN_IDX")
     private User user;
@@ -93,8 +93,7 @@ public class GroupInfo extends BaseTimeEntity {
     @Builder.Default
     private Integer status = 0;
 
-    //UserGroup 일대다 양방향
-    //
+    //Register 일대다 양방향
     @OneToMany(mappedBy = "groupInfo")
     private List<Register> registers = new ArrayList<Register>();
 
