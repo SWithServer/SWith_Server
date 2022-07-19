@@ -20,7 +20,7 @@ public class Session {
 
     @ManyToOne
     @JoinColumn(name = "GROUP_IDX")
-    private Group group;
+    private GroupInfo groupInfo;
 
     private long sessionNum;
     private Date sessionStart;

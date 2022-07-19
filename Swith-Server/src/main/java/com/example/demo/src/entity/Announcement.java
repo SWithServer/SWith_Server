@@ -21,7 +21,7 @@ public class Announcement {
 
     @ManyToOne
     @JoinColumn(name = "GROUP_IDX")
-    private Group group;
+    private GroupInfo groupInfo;
 
     private String announcementContent;
 

@@ -24,7 +24,7 @@ public class Application {
 
     @ManyToOne
     @JoinColumn(name = "GROUP_IDX")
-    private Group group;
+    private GroupInfo groupInfo;
 
     private Byte status;
     private String applicationContent;

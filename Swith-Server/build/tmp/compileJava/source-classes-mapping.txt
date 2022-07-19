@@ -2,27 +2,57 @@ com/example/demo/utils/SHA256.java
  com.example.demo.utils.SHA256
 com/example/demo/config/Constant.java
  com.example.demo.config.Constant
-com/example/demo/config/secret/Secret.java
- com.example.demo.config.secret.Secret
+com/example/demo/src/entity/User.java
+ com.example.demo.src.entity.User
+ com.example.demo.src.entity.User$UserBuilder
+com/example/demo/src/entity/Notification.java
+ com.example.demo.src.entity.Notification
+com/example/demo/src/entity/BaseTimeEntity.java
+ com.example.demo.src.entity.BaseTimeEntity
 com/example/demo/utils/ValidationRegex.java
  com.example.demo.utils.ValidationRegex
-com/example/demo/config/BaseResponse.java
- com.example.demo.config.BaseResponse
-com/example/demo/config/BaseResponsePaging.java
- com.example.demo.config.BaseResponsePaging
+com/example/demo/src/entity/Session.java
+ com.example.demo.src.entity.Session
+com/example/demo/src/service/UserService.java
+ com.example.demo.src.service.UserService
+com/example/demo/src/entity/Group.java
+ com.example.demo.src.entity.Group
+ com.example.demo.src.entity.Group$GroupBuilder
+com/example/demo/src/entity/Application.java
+ com.example.demo.src.entity.Application
+com/example/demo/src/entity/Attendance.java
+ com.example.demo.src.entity.Attendance
+com/example/demo/src/entity/UserGroup.java
+ com.example.demo.src.entity.UserGroup
 com/example/demo/config/BaseResponseStatus.java
  com.example.demo.config.BaseResponseStatus
-com/example/demo/config/BaseException.java
- com.example.demo.config.BaseException
-com/example/demo/DemoApplication.java
- com.example.demo.DemoApplication
 com/example/demo/src/WebSecurityConfig.java
  com.example.demo.src.WebSecurityConfig
-com/example/demo/utils/JwtService.java
- com.example.demo.utils.JwtService
 com/example/demo/src/test/TestController.java
  com.example.demo.src.test.TestController
 com/example/demo/config/PagingRes.java
  com.example.demo.config.PagingRes
-com/example/demo/src/entity/Event.java
- com.example.demo.src.entity.Event
+com/example/demo/src/repository/UserRepository.java
+ com.example.demo.src.repository.UserRepository
+com/example/demo/src/entity/Interest.java
+ com.example.demo.src.entity.Interest
+com/example/demo/config/secret/Secret.java
+ com.example.demo.config.secret.Secret
+com/example/demo/src/entity/Rating.java
+ com.example.demo.src.entity.Rating
+com/example/demo/config/SpringConfig.java
+ com.example.demo.config.SpringConfig
+com/example/demo/config/BaseResponse.java
+ com.example.demo.config.BaseResponse
+com/example/demo/config/BaseResponsePaging.java
+ com.example.demo.config.BaseResponsePaging
+com/example/demo/src/entity/Announcement.java
+ com.example.demo.src.entity.Announcement
+com/example/demo/src/entity/Badge.java
+ com.example.demo.src.entity.Badge
+com/example/demo/config/BaseException.java
+ com.example.demo.config.BaseException
+com/example/demo/DemoApplication.java
+ com.example.demo.DemoApplication
+com/example/demo/utils/JwtService.java
+ com.example.demo.utils.JwtService

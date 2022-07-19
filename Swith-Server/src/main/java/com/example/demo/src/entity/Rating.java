@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "RATING")
-public class Rating {
+public class Rating extends BaseTimeEntity {
     @Id
     @Column(name = "RATING_IDX")
     private long ratingIdx;
@@ -26,8 +26,6 @@ public class Rating {
     private User user;
 
     //별점(1~5점)
-    private Byte star;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(columnDefinition = "TINYINT")
+    private Integer star;
 }

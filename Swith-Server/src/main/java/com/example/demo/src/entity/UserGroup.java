@@ -24,8 +24,8 @@ public class UserGroup {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "GROUP_IDX")
-    private Group group;
+    @JoinColumn(name = "GROUP_INFO_IDX")
+    private GroupInfo groupInfo;
 
     private Byte status;
 
