@@ -2,6 +2,7 @@ package com.example.demo.src.service;
 
 import com.example.demo.src.entity.GroupInfo;
 import com.example.demo.src.entity.Register;
+import com.example.demo.src.entity.User;
 import com.example.demo.src.repository.GroupInfoRepository;
 import com.example.demo.src.repository.RegisterRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,5 +31,15 @@ public class GroupInfoService {
             studies.add(register.getGroupInfo());
         }
         return studies;
+    }
+
+    public List<User> loadUsers(Long groupInfoIdx) {
+        GroupInfo groupInfo = groupInfoRepository.findById(groupInfoIdx).get();
+        List<Register> registers = groupInfo.getRegisters();
+        List<User> users = new ArrayList<>();
+        for (Register register : registers){
+            users.add(register.getUser());
+        }
+        return users;
     }
 }

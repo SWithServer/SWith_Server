@@ -16,14 +16,14 @@ import javax.persistence.*;
 @Table(name = "ANNOUNCEMENT")
 public class Announcement extends BaseTimeEntity{
     @Id
-//    @Column(name = "ANNOUNCEMENT_IDX")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long announcementIdx;
 
     @ManyToOne
-    @JoinColumn//(name = "GROUP_INFO_IDX")
+    @JoinColumn(name = "groupIdx")
     private GroupInfo groupInfo;
 
+    @Column(length = 200)
     private String announcementContent;
 
     @Column(columnDefinition = "TINYINT")

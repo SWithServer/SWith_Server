@@ -17,13 +17,13 @@ import java.util.Date;
 @Table(name = "NOTIFICATION")
 public class Notification extends BaseTimeEntity {
     @Id
-//    @Column(name = "NOTIFICATION_IDX")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long notificationIdx;
 
+    @Column(length = 45)
     private String notificationContent;
 
     @ManyToOne
-    @JoinColumn//(name = "USER_IDX")
+    @JoinColumn(name = "userIdx")
     private User user;
 }

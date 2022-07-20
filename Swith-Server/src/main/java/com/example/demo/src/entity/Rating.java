@@ -17,16 +17,15 @@ import java.util.Date;
 @Table(name = "RATING")
 public class Rating extends BaseTimeEntity {
     @Id
-//    @Column(name = "RATING_IDX")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ratingIdx;
+    private Long ratingIdx;
 
     //평가자를 기준으로 조회할일은 없기에 매핑할 이유가 없음
-    private long raterIdx;
+    private Long raterIdx;
 
-    //User 양방향
+    //User 단방향
     @ManyToOne
-    @JoinColumn//(name = "USER_IDX")
+    @JoinColumn(name = "rateeIdx")
     private User user;
 
     //별점(1~5점)

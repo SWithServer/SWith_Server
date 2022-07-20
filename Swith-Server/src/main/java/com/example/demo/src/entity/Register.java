@@ -16,17 +16,16 @@ import javax.persistence.*;
 @Table(name = "REGISTER")
 public class Register extends BaseTimeEntity{
     @Id
-//    @Column(name = "REGISTER_IDX")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long registerIdx;
 
     //FK 2개
     @ManyToOne
-    @JoinColumn//(name = "USER_IDX")
+    @JoinColumn(name = "userIdx")
     private User user;
 
     @ManyToOne
-    @JoinColumn//(name = "GROUP_INFO_IDX")
+    @JoinColumn(name = "groupIdx")
     private GroupInfo groupInfo;
 
     @Column(columnDefinition = "TINYINT")

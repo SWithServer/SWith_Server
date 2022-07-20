@@ -17,15 +17,15 @@ import javax.persistence.*;
 public class Badge extends BaseTimeEntity {
 
     @Id
-//    @Column(name = "BADGE_IDX")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long badgeIdx;
 
     @ManyToOne
-    @JoinColumn//(name = "USER_IDX")
+    @JoinColumn(name = "userIdx")
     private User user;
 
     //Double로 저장하는게 좋을듯
+
     private Double attendanceRate;
 
     //Interest 다대일 단방향

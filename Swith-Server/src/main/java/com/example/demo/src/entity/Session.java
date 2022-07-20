@@ -19,13 +19,13 @@ import java.util.List;
 @Table(name = "SESSION")
 public class Session extends BaseTimeEntity {
     @Id
-//    @Column(name = "SESSION_IDX")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sessionIdx;
 
     @ManyToOne
-    @JoinColumn//(name = "GROUP_INFO_IDX")
+    @JoinColumn(name = "groupIdx")
     private GroupInfo groupInfo;
+
     private Integer sessionNum;
 
     //어떤 자료형으로 할지 고민이 필요
@@ -37,16 +37,18 @@ public class Session extends BaseTimeEntity {
     @Column(columnDefinition = "TINYINT")
     private Integer online;
 
+    @Column(length = 45)
     private String place;
 
     @Column(columnDefinition = "TINYINT")
     @Builder.Default
     private Integer status = 0;
 
+    @Column(length = 500)
     private String sessionContent;
 
     //Attendance과 일대다 양방향
     //Session의 출석부를 불러올 때 사용할듯
-    @OneToMany(mappedBy = "session")
-    private List<Attendance> attendances = new ArrayList<>();
+    //@OneToMany(mappedBy = "session")
+    //private List<Attendance> attendances = new ArrayList<>();
 }

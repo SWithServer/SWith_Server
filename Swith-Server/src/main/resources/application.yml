@@ -29,7 +29,9 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
-    database:
+    properties:
+      hibernate.format_sql: true #예쁘게
+
 
 
   security:

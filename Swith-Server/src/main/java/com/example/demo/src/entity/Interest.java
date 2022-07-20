@@ -20,5 +20,6 @@ public class Interest {
     @Column(columnDefinition = "TINYINT")
     private Integer interestIdx;
 
+    @Column( length = 45)
     private String interestContent;
 }

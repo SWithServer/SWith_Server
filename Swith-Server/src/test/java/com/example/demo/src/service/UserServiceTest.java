@@ -4,7 +4,9 @@
 //updatedAt 22.07.20
 package com.example.demo.src.service;
 
+import com.example.demo.src.entity.GroupInfo;
 import com.example.demo.src.entity.Interest;
+import com.example.demo.src.entity.Register;
 import com.example.demo.src.entity.User;
 import com.example.demo.src.repository.UserRepository;
 import com.example.demo.src.service.InterestService;
@@ -13,6 +15,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
@@ -24,6 +30,8 @@ public class UserServiceTest {
     UserRepository userRepository;
     @Autowired
     InterestService interestService;
+    @Autowired
+    GroupInfoService groupInfoService;
 
 
     @Test
@@ -58,6 +66,19 @@ public class UserServiceTest {
 
         //then
         User findUser = userService.findOne(saveId).get();
-//        assertThat(user.getEmail()).isEqualTo(findUser.getEmail());
+        assertThat(user.getEmail()).isEqualTo(findUser.getEmail());
     }
+
+
+    @Test
+    @DisplayName("유저가 가입한 불러오기")
+    void load_studies() {
+        Long userIdx = 1L;
+        List<GroupInfo> groupInfos = userService.findRegistered(userIdx);
+
+        for(GroupInfo groupInfo : groupInfos){
+            System.out.println("groupInfo = " + groupInfo.getGroupInfoIdx());
+        }
+    }
+
 }

@@ -21,7 +21,7 @@ public class GroupInfo extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long groupInfoIdx;
+    private Long groupIdx;
 
     // 관리자 ID
     @ManyToOne
@@ -39,6 +39,7 @@ public class GroupInfo extends BaseTimeEntity {
     @Column(columnDefinition = "TINYINT")
     private Integer frequency;
 
+    @Column( length = 45)
     // meet가 2일 경우 예정 주기에 대한 자유로운 문자열 입력
     private String periods;
 
@@ -58,8 +59,11 @@ public class GroupInfo extends BaseTimeEntity {
     private Interest interest;
 
     // 스터디 주제
+    @Column(length = 45)
     private String topic;
 
+//    @Min(2)
+//    @Max(10)
     // 스터디 정원 2 ~ 10명
     @Column(columnDefinition = "TINYINT")
     private Integer memberLimit;
@@ -87,6 +91,7 @@ public class GroupInfo extends BaseTimeEntity {
 
     // 컬럼명 수정: Content -> groupContent
     // 스터디에 대한 학습 예정 내용
+    @Column(length = 200)
     private String groupContent;
 
     // 스터디 상태
@@ -95,18 +100,18 @@ public class GroupInfo extends BaseTimeEntity {
     private Integer status = 0;
 
     //Register 일대다 양방향
-    @OneToMany(mappedBy = "groupInfo")
-    private List<Register> registers = new ArrayList<Register>();
+//    @OneToMany(mappedBy = "groupInfo")
+//    private List<Register> registers = new ArrayList<Register>();
 
     //Session 일대다 양방향
-    @OneToMany(mappedBy = "groupInfo")
-    private List<Session> sessions = new ArrayList<Session>();
+//    @OneToMany(mappedBy = "groupInfo")
+//    private List<Session> sessions = new ArrayList<Session>();
 
     //Announcement와 일대다 양방향
-    @OneToMany(mappedBy = "groupInfo")
-    private List<Announcement> announcements = new ArrayList<>();
+//    @OneToMany(mappedBy = "groupInfo")
+//    private List<Announcement> announcements = new ArrayList<>();
 
     //Application과 일대다 양방향
-    @OneToMany(mappedBy = "groupInfo")
-    private List<Application> applications = new ArrayList<>();
+//    @OneToMany(mappedBy = "groupInfo")
+//    private List<Application> applications = new ArrayList<>();
 }

@@ -40,13 +40,9 @@ public class GroupInfoServiceTest {
     void load_studies() {
         //given
         List<GroupInfo> groupInfos = groupInfoService.loadStudies(1L);
-
         for (GroupInfo groupInfo : groupInfos) {
             System.out.println("groupInfos = " + groupInfo.getGroupInfoIdx());
         }
 
-        //when
-//        groupInfoService.
-        //then
     }
 }

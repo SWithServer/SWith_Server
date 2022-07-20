@@ -25,22 +25,29 @@ public class User extends BaseTimeEntity {
 //    @Column(name = "USER_IDX")
     private Long userIdx;
 
-
+    @Column(length = 45)
     private String email;
+
+    @Column(length = 100)
     private String password;
 
     //다대일 단방향
     @ManyToOne()
-    @JoinColumn//(name = "INTEREST_IDX1")
+    @JoinColumn(name = "interestIdx1")
     private Interest interest1;
 
     //다대일 단방향
     @ManyToOne()
-    @JoinColumn//(name = "INTEREST_IDX2")
+    @JoinColumn(name = "interestIdx2")
     private Interest interest2;
 
+    @Column(length = 80)
     private String introduction;
+
+    @Column(length = 100)
     private String profileImgUrl;
+
+
     private Double averageStar;
 
     //DB에서는 TINYINT 타입으로 저장
@@ -49,29 +56,30 @@ public class User extends BaseTimeEntity {
     private Integer status = 0;
 
 
-    //Rating 일대다 양방향(유저에 대한 평가 리스트)
-    @OneToMany(mappedBy = "user")
-    private List<Rating> ratings = new ArrayList<Rating>();
+    //Rating 일대다 양방향
+    // (유저에 대한 평가 리스트 조회)
+//    @OneToMany(mappedBy = "user")
+//    private List<Rating> ratings = new ArrayList<Rating>();
 
-    //UserGroup 일대다 양방향
+    //Register 일대다 양방향
     //가입한 그룹을 불러올 때 쓰일 것
     @OneToMany(mappedBy = "user")
     private List<Register> registers = new ArrayList<Register>();
 
     //Badge 일대다 양방향
     //프로필 조회시 사용할 것
-    @OneToMany(mappedBy = "user")
-    private List<Badge> badges = new ArrayList<Badge>();
+//    @OneToMany(mappedBy = "user")
+//    private List<Badge> badges = new ArrayList<Badge>();
 
     //notification 일대다 양방향
     //알림 조회시
-    @OneToMany(mappedBy = "user")
-    private List<Notification> notifications = new ArrayList<Notification>();
+//    @OneToMany(mappedBy = "user")
+//    private List<Notification> notifications = new ArrayList<Notification>();
 
     //Application 일대다 양방향
-    //자신의 지원서 목록 조회시? 필요한지는 모르겠음
-    @OneToMany(mappedBy = "user")
-    private List<Application> applications = new ArrayList<Application>();
+    //자신의 지원서 목록 조회시 사용
+//    @OneToMany(mappedBy = "user")
+//    private List<Application> applications = new ArrayList<Application>();
 
 
     //유저가 가입한 스터디에서의 개인 출석율은 쿼리를 써야할 듯
