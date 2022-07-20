@@ -17,6 +17,7 @@ import javax.persistence.*;
 public class Register extends BaseTimeEntity{
     @Id
 //    @Column(name = "REGISTER_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long registerIdx;
 
     //FK 2개

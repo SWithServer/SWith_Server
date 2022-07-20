@@ -17,6 +17,7 @@ import javax.persistence.*;
 public class Announcement extends BaseTimeEntity{
     @Id
 //    @Column(name = "ANNOUNCEMENT_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long announcementIdx;
 
     @ManyToOne

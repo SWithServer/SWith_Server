@@ -1,20 +1,21 @@
-package com.example.demo.service;
+//작성자: 이준표
+//NotificationService Test 코드
+//createdAt 22.07.18
+//updatedAt 22.07.20
+package com.example.demo.src.service;
 
 import com.example.demo.src.entity.Notification;
 import com.example.demo.src.entity.User;
 import com.example.demo.src.repository.NotificationRepository;
 import com.example.demo.src.service.NotificationService;
 import com.example.demo.src.service.UserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class NotificationServiceTest {
 
     @Autowired
@@ -25,7 +26,7 @@ public class NotificationServiceTest {
     UserService userService;
 
     @Test
-    public void selectNotifications() {
+    void selectNotifications() {
         //given
         Long userIdx = 1L;
         User user = userService.findOne(userIdx).get();

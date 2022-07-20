@@ -18,6 +18,7 @@ import java.util.Date;
 public class Rating extends BaseTimeEntity {
     @Id
 //    @Column(name = "RATING_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ratingIdx;
 
     //평가자를 기준으로 조회할일은 없기에 매핑할 이유가 없음

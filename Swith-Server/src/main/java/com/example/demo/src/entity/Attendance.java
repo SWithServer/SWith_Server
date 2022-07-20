@@ -17,6 +17,7 @@ import javax.persistence.*;
 public class Attendance extends BaseTimeEntity {
     @Id
 //    @Column(name = "ATTENDANCE_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long attendanceIdx;
 
     //이건 양방향으로 할 필요가 없음, 다대일 단방향으로

@@ -20,6 +20,7 @@ import java.util.List;
 public class Session extends BaseTimeEntity {
     @Id
 //    @Column(name = "SESSION_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sessionIdx;
 
     @ManyToOne

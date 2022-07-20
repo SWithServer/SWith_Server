@@ -18,6 +18,7 @@ public class Badge extends BaseTimeEntity {
 
     @Id
 //    @Column(name = "BADGE_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long badgeIdx;
 
     @ManyToOne

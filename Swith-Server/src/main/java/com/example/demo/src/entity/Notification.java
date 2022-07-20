@@ -17,8 +17,8 @@ import java.util.Date;
 @Table(name = "NOTIFICATION")
 public class Notification extends BaseTimeEntity {
     @Id
-    @GeneratedValue
 //    @Column(name = "NOTIFICATION_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long notificationIdx;
 
     private String notificationContent;

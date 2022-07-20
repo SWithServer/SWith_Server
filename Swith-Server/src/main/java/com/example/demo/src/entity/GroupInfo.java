@@ -20,6 +20,7 @@ import java.util.List;
 public class GroupInfo extends BaseTimeEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long groupInfoIdx;
 
     // 관리자 ID

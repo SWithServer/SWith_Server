@@ -18,6 +18,7 @@ import java.util.Date;
 public class Application extends BaseTimeEntity {
     @Id
 //    @Column(name = "APPLICATION_IDX")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long applicationIdx;
 
     //다대일 양방향
