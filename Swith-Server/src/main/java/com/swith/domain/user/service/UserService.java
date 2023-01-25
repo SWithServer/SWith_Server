@@ -84,7 +84,7 @@ public class UserService {
         }
     }
 
-    public boolean isAdminOfGroup(Long userIdx, Long GroupIdx) {
+    public boolean isAdminOfGroup(Long userIdx, Long GroupIdx) throws BaseException{
         User user = userRepository.findById(userIdx)
                 .orElseThrow(() -> new BaseException(ErrorCode.INVALID_USER));
         GroupInfo groupInfo = groupInfoRepository.findById(GroupIdx)

@@ -62,7 +62,7 @@ public class AnnouncementService {
         return getAnnouncementRes;
     }
 
-    public Long createAnnouncement(PostAnnouncementReq postAnnouncementReq) {
+    public Long createAnnouncement(PostAnnouncementReq postAnnouncementReq) throws BaseException, IOException {
         Long groupIdx = postAnnouncementReq.getGroupIdx();
         GroupInfo groupInfo = groupInfoRepository.findById(groupIdx)
                 .orElseThrow(() -> new BaseException(ErrorCode.INVALID_GROUP));
@@ -88,7 +88,7 @@ public class AnnouncementService {
         return savedAnnouncement.getAnnouncementIdx();
     }
 
-    public Long updateAnnouncement(PatchAnnouncementReq patchAnnouncementReq) {
+    public Long updateAnnouncement(PatchAnnouncementReq patchAnnouncementReq) throws BaseException {
         Announcement announcement = announcementRepository.findById(patchAnnouncementReq.getAnnouncementIdx())
                 .orElseThrow(() -> new BaseException(ErrorCode.INVALID_ANNOUNCEMENT));
         //삭제된 상태의 경우
@@ -103,7 +103,7 @@ public class AnnouncementService {
         return announcement.getAnnouncementIdx();
     }
 
-    public Integer deleteAnnouncement(Long announcementIdx) {
+    public Integer deleteAnnouncement(Long announcementIdx) throws BaseException {
         Announcement announcement = announcementRepository.findById(announcementIdx)
                 .orElseThrow(() -> new BaseException(ErrorCode.INVALID_ANNOUNCEMENT));
 
