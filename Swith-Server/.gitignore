@@ -64,6 +64,8 @@
 application-oauth.properties
 src/main/resources/application-oauth.properties
 src/main/resources/firebase/firbase_secret_key.json
+src/main/resources/firebase/firebase_secret_key.json
+
 # CMake
 cmake-build-*/
 
