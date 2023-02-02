@@ -41,6 +41,7 @@ public class GroupInfoFirebaseService {
 
         Response response = client.newCall(request)
                 .execute();
+
     /*
         System.out.println("code " + response.code() +
                 "body : "+ response.body().string());*/
