@@ -24,7 +24,7 @@ import java.util.List;
 public class FirebaseCloudMessageService {
 
     // HTTP v1 Method
-    private final String API_URL = "https://fcm.googleapis.com/v1/projects/swith-41b09/messages:send";
+    private final String API_URL = "https://fcm.googleapis.com/v1/projects/swith-91dcc/messages:send";
     private final ObjectMapper objectMapper;
 
     public void sendMessageTo(String targetToken, String title, String body) {
