@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface RegisterRepository extends JpaRepository<Register,Long> {
 
@@ -45,6 +47,24 @@ public interface RegisterRepository extends JpaRepository<Register,Long> {
             "from Register r " +
             "where r.groupInfo.groupIdx = :groupIdx and r.status = 0")
     List<Register> findUser(@Param("groupIdx") Long groupIdx);
+
+    @Query("select r " +
+            "from Register r " +
+            "where r.groupInfo.groupIdx = :groupIdx and r.user.userIdx = :userIdx and r.status = :status ")
+    Optional<Register> findRegisterByGroupIdxandUserIdx(@Param("groupIdx") Long groupIdx,
+                                                        @Param("userIdx") Long userIdx, @Param("status") Integer status);
+
+
+    @Query("select count(r) " +
+            "from Register r " +
+            "where r.groupInfo.groupIdx = :groupIdx and r.status = 0 ")
+    Integer findActiveUser(@Param("groupIdx")Long groupIdx);
+
+
+
+
+
+
 
     //    @Query("select u " +
 //            "from Register r " +

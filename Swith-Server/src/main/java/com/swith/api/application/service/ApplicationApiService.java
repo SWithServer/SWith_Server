@@ -5,6 +5,8 @@ import com.swith.api.application.dto.*;
 import com.swith.domain.application.service.ApplicationService;
 import com.swith.domain.groupinfo.service.GroupInfoService;
 import com.swith.api.register.service.RegisterApiService;
+import com.swith.domain.register.entity.Register;
+import com.swith.domain.register.service.RegisterService;
 import com.swith.domain.user.entity.User;
 import com.swith.domain.user.service.UserService;
 import com.swith.global.error.ErrorCode;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +41,7 @@ public class ApplicationApiService {
     private final GroupInfoService groupInfoService;
     private final ApplicationService applicationService;
     private final UserService userService;
+    private final RegisterService registerService;
 
     @Autowired
     public ApplicationApiService(ApplicationRepository applicationRepository,
@@ -45,7 +50,7 @@ public class ApplicationApiService {
                                  RegisterRepository registerRepository,
                                  RegisterApiService registerApiService,
                                  GroupInfoService groupInfoService,
-                                 ApplicationService applicationService, UserService userService) {
+                                 ApplicationService applicationService, UserService userService, RegisterService registerService) {
         this.applicationRepository = applicationRepository;
         this.groupInfoRepository = groupInfoRepository;
         this.userRepository = userRepository;
@@ -55,6 +60,7 @@ public class ApplicationApiService {
         this.applicationService = applicationService;
 
         this.userService = userService;
+        this.registerService = registerService;
     }
 
 
@@ -70,9 +76,9 @@ public class ApplicationApiService {
 
     //신청 인원이 다 찾는지 확인.
     public void CheckFULL(Long groupIdx){
-        Integer limit = getMemberLimit(groupIdx);
-        Long NumOfApplicants = findNumOfApplicants(groupIdx);
-        if(limit.equals(NumOfApplicants.intValue())){//신청인원이 다 채워져서  신청 불가.
+        Integer limit = getMemberLimit(groupIdx); //최대 멤버수.
+        Integer NumOfApplicants = findNumOfApplicants(groupIdx); //현재 승인된 사람.
+        if(limit.equals(NumOfApplicants)){//신청인원이 다 채워져서  신청 불가.
             throw new BaseException(ErrorCode.FULL_NUM_OF_Applicants);
         }
 
@@ -83,10 +89,12 @@ public class ApplicationApiService {
         return limit;
     }
 
-    public Long findNumOfApplicants(Long groupIdx){
+    public Integer findNumOfApplicants(Long groupIdx){
 
-        Long NumOfApplicants = applicationRepository.findNumOfApplicants(groupIdx);
-        return NumOfApplicants;
+        //Long NumOfApplicants = applicationRepository.findNumOfApplicants(groupIdx);
+        Integer NumOfApplicants = registerService.getMemberCount(groupIdx);
+        if(NumOfApplicants == null ) return 0;
+        else return NumOfApplicants;
     }
 
 
@@ -324,26 +332,46 @@ public class ApplicationApiService {
         //가지고와서
         Application application = applicationService.getOneApplication(patchExpelUserReq.getApplicationIdx());
 
-
         //가입 승인이 된 유저만 대상으로 추방을 할 수 있음.
         Integer status = application.getStatus();
         if(!(status.equals(1))){
             throw new BaseException(ErrorCode.IS_NOT_THE_MEMBER);
         }
 
-        // 현재, 승인상태면 바로 추방 가능하게 만들어놨다함. (즉, 현재 요구사항에선 스터디 진행중인거 고려할 필요가 없음...)
-//        if ( groupInfoRepository.findstatusOfGroupInfo(groupIdx) != 1 ){//진행중인 스터디에 한해서만 변경이 가능함..
-//
-//
-//        }
+        LocalDate now =  LocalDate.now();
+        //그 날에 시작하는 그룹의 그룹 상태를 진행중으로 변경.
+        LocalDate start = application.getGroupInfo().getGroupStart();
+        System.out.println("hihihihi");
+        System.out.println(now.toString() + " " +start.toString());
+        int result = now.compareTo(start);
+        System.out.println(result);
+        //스터디 시작 전이면, 반려임.
+        if(result < 0 ){
+            // now(현재)는 스터디 시작일(start)보다 이전 날짜이다.
+            application.changeStatus(2);
 
 
-        //상태변경 - 추방
-        application.changeStatus(3);
+        }else if(result >= 0){
+            // 시작일이거나, 이미 진행 중.
+            if(!application.getGroupInfo().getStatus().equals(1)){//진행중인 스터디가 아니다.
+                throw new BaseException(ErrorCode.FAIL_EXPEL); //예정이거나, 종료.. 근데 예정이면 앞에서 잡혔을거. 그러니깐 종료일거.
+            }
+            //스터디 시작 후면, 추방임.
+            //상태변경 - 추방
+            application.changeStatus(3);
+
+        }else{
+
+            throw new BaseException(ErrorCode.SERVER_ERROR);
+        }
+
+        //등록되어 있는곳에서 빠져야함.
+        Register register = registerService.getOneActiveUser(groupIdx,patchExpelUserReq.getUserIdx());
+        register.changeStatus(1);
 
 
         return application.getApplicationIdx();
-        // +) Register에서 상태변경(추방)..해야하는거 짜야 됨 .............
+
 
 
 

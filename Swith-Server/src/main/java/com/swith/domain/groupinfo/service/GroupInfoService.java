@@ -74,7 +74,6 @@ public class GroupInfoService {
     }
 
 
-
     //스터디 그룹 존재 여부 체크. 존재 여부만 체크하고 정보까지 가지고 올 필요가 없을 때, 사용.
     public void existGroupIdx(Long groupIdx){
 
@@ -83,6 +82,14 @@ public class GroupInfoService {
         if( !(check == 0 || check == 1)) {
             // 2(종료) 되었거나 다른 문제
             throw new BaseException(ErrorCode.FAIL_LOAD_GROUPINFO);
+        }
+
+    }
+
+    public void statusEndGroup(Long groupIdx){
+        Integer check = groupInfoRepository.findStatusOfGroupInfo(groupIdx);
+        if(!(check == 2)){
+            throw new BaseException(ErrorCode.BADREQUEST);
         }
 
     }

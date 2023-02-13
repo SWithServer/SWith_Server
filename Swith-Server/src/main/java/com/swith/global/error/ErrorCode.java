@@ -98,8 +98,10 @@ public enum ErrorCode {
     NO_GROUP_LEADER(HttpStatus.FORBIDDEN,6008,"그룹 리더가 아니기 때문에, 권한이 없습니다."),
     NO_APPLICATION_INFO(HttpStatus.BAD_REQUEST, 6009, "유저의 지원서 정보가 없습니다."),
     INVALID_MEMO(HttpStatus.BAD_REQUEST, 6010, "메모 정보가 없습니다."),
+    NO_REGISTER_MEMBER(HttpStatus.BAD_REQUEST,6013,"그룹의 멤버가 아닙니다."),
     IOEXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, 6011, "OkHttp API 요청 에러 발생"),
     BADREQUEST(HttpStatus.BAD_REQUEST,6012,"잘못된 접근입니다."),
+    SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,6013,"서버 error"),
 
 
 
@@ -140,6 +142,7 @@ public enum ErrorCode {
 
 
     //9050 : 그룹
+    FAIL_EXPEL(HttpStatus.FORBIDDEN,9050,"종료된 스터디입니다. 진행중인 스터디에 대해서만, 추방이 가능합니다."),
     FAIL_LOAD_GROUPINFO(HttpStatus.BAD_REQUEST,9051,"스터디 그룹이 존재하지 않습니다."),
     FAIL_CLOSED_GROUPINFO(HttpStatus.BAD_REQUEST,9052,"종료된 스터디 그룹이기 때문에, 요청을 수행할 수 없습니다."),
     INVAILD_ADMIN_APPLICATION(HttpStatus.BAD_REQUEST,9053,"그룹장은 가입이 불가합니다."),

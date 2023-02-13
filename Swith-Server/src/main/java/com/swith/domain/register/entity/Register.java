@@ -12,7 +12,7 @@ import javax.persistence.*;
 import static javax.persistence.FetchType.*;
 
 
-@Getter @Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,6 +35,12 @@ public class Register extends BaseTimeEntity {
     @Builder.Default
     private Integer status = 0; //0:가입 1:탈퇴
 
+    private Integer rating; //받은 평가 점수
+    @Builder.Default
+    private Integer rating_status = 0; //본인이 평가를 완료를 했는지의 여부.
+
+
+
 
 
 
@@ -44,6 +50,11 @@ public class Register extends BaseTimeEntity {
                 .groupInfo(application.getGroupInfo())
                 .status(status)
                 .build();
+
+    }
+
+    public void changeStatus(Integer status){
+        this.status = status;
 
     }
 

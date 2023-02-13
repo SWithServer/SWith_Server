@@ -1,6 +1,10 @@
 package com.swith.api.register.service;
 
+import com.swith.api.register.dto.RatingTableReq;
+import com.swith.api.register.dto.RatingTableRes;
+import com.swith.domain.groupinfo.service.GroupInfoService;
 import com.swith.domain.register.service.RegisterService;
+import com.swith.domain.user.entity.User;
 import com.swith.global.error.exception.BaseException;
 import com.swith.global.error.ErrorCode;
 import com.swith.domain.application.entity.Application;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,12 +27,15 @@ public class RegisterApiService {
     private final GroupInfoRepository groupInfoRepository;
     private final RegisterService registerService;
 
+    private final GroupInfoService groupInfoService;
+
     @Autowired
-    public RegisterApiService(RegisterRepository registerRepository, UserRepository userRepository, GroupInfoRepository groupInfoRepository, RegisterService registerService) {
+    public RegisterApiService(RegisterRepository registerRepository, UserRepository userRepository, GroupInfoRepository groupInfoRepository, RegisterService registerService, GroupInfoService groupInfoService) {
         this.registerRepository = registerRepository;
         this.userRepository = userRepository;
         this.groupInfoRepository = groupInfoRepository;
         this.registerService = registerService;
+        this.groupInfoService = groupInfoService;
     }
 
 
@@ -72,6 +80,23 @@ public class RegisterApiService {
         return true;
     }
 
+
+    public List<RatingTableRes> getRatingTable(RatingTableReq ratingTableReq){
+
+        List<User> memberList = registerRepository.findUserByGroup(ratingTableReq.getGroupIdx());
+        if(memberList.isEmpty() || memberList == null){
+            throw new BaseException(ErrorCode.SERVER_ERROR);
+        }
+
+        List<RatingTableRes> results = memberList.stream().map(m -> RatingTableRes.from(m)).collect(Collectors.toList());
+
+
+
+        return results;
+
+
+
+    }
 
 
 

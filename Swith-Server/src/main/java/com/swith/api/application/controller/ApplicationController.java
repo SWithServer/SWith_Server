@@ -113,22 +113,16 @@ public class ApplicationController {
     @ApiOperation("스터디 유저 추방 API")
     @ResponseBody
     @PatchMapping("/manage/expel/{groupIdx}")
-    public ResponseEntity<Long> ExpelUserFromGroup (@PathVariable Long groupIdx,  @RequestBody @Valid PatchExpelUserReq patchExpelUserReq) throws BaseException {
+    public ResponseEntity<Long> ExpelUserFromGroup (@PathVariable Long groupIdx,  @RequestBody @Valid PatchExpelUserReq patchExpelUserReq)  {
 
-//        System.out.println("groupIDx >> " + groupIdx);
-//        System.out.println("user >> " +patchExpelUserReq.getUserIdx());
-//        System.out.println("applicationIdx >> "+patchExpelUserReq.getApplicationIdx());
-//        System.out.println("adminIDx >> " +patchExpelUserReq.getAdminIdx());
+
         //jwt 유효성 검사 추가
-
 
         //추방 권한 확인
         groupInfoService.CheckIsAdminForAdminToManage(groupIdx,patchExpelUserReq.getAdminIdx());
 
-
         //추방하기
         Long result = applicationApiService.ExpelUserFromGroup(groupIdx, patchExpelUserReq);
-        //if(result == -3L) throw new BaseException(ErrorCode.DO_NOT_EXECUTE_CHANGE);
         return ResponseEntity.ok(result);
 
     }
